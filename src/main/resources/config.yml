@@ -1,0 +1,4 @@
+max-reroutes: 3  # Change this to adjust how many times a GPS can be rerouted before breaking
+
+# Dont change this
+version: 2

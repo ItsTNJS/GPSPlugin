@@ -1,9 +1,6 @@
 package org.tnjs.GPSPlugin;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,8 +13,6 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class GPSCommand implements CommandExecutor {
     private final GPSPlugin plugin;
@@ -33,14 +28,20 @@ public class GPSCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length != 2) {
-            sender.sendMessage(ChatColor.RED + "Usage: /gps <x> <z>");
+        Player player = (Player) sender;
+
+        // Check permission
+        if (!player.hasPermission("gps.use")) {
+            player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
             return true;
         }
 
-        Player player = (Player) sender;
-        int x, z;
+        if (args.length != 2) {
+            player.sendMessage(ChatColor.RED + "Usage: /gps <x> <z>");
+            return true;
+        }
 
+        int x, z;
         try {
             x = Integer.parseInt(args[0]);
             z = Integer.parseInt(args[1]);
@@ -68,11 +69,7 @@ public class GPSCommand implements CommandExecutor {
     }
 
     private void removeCompasses(Player player, int amount) {
-        List<ItemStack> stacks = player.getInventory().all(Material.COMPASS).values().stream()
-                .flatMap(stack -> IntStream.range(0, stack.getAmount()).mapToObj(i -> stack))
-                .collect(Collectors.toList());
-
-        for (ItemStack stack : stacks) {
+        for (ItemStack stack : player.getInventory().all(Material.COMPASS).values()) {
             int stackSize = stack.getAmount();
             if (amount <= 0) break;
 
@@ -95,11 +92,20 @@ public class GPSCommand implements CommandExecutor {
             meta.setLodestone(targetLocation);
             meta.setLodestoneTracked(false);
             meta.setDisplayName(ChatColor.GOLD + "GPS");
-            meta.setLore(List.of(ChatColor.YELLOW + "Heading to " + x + ", " + z));
+
+            int maxUses = plugin.getConfig().getInt("max-reroutes", 3);
+
+            meta.setLore(List.of(
+                    ChatColor.GREEN + "Heading to " + x + ", " + z,
+                    ChatColor.AQUA + "Reroutes left: " + maxUses
+            ));
 
             PersistentDataContainer data = meta.getPersistentDataContainer();
             NamespacedKey key = new NamespacedKey(plugin, "gps-compass");
+            NamespacedKey usesKey = new NamespacedKey(plugin, "gps-uses");
+
             data.set(key, PersistentDataType.BYTE, (byte) 1);
+            data.set(usesKey, PersistentDataType.INTEGER, maxUses);
 
             compass.setItemMeta(meta);
         }

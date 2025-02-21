@@ -1,9 +1,6 @@
 package org.tnjs.GPSPlugin;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,14 +28,20 @@ public class RerouteCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length != 2) {
-            sender.sendMessage(ChatColor.RED + "Usage: /reroute <x> <z>");
+        Player player = (Player) sender;
+
+        // Check permission
+        if (!player.hasPermission("gps.use")) {
+            player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
             return true;
         }
 
-        Player player = (Player) sender;
-        int x, z;
+        if (args.length != 2) {
+            player.sendMessage(ChatColor.RED + "Usage: /reroute <x> <z>");
+            return true;
+        }
 
+        int x, z;
         try {
             x = Integer.parseInt(args[0]);
             z = Integer.parseInt(args[1]);
@@ -53,9 +56,13 @@ public class RerouteCommand implements CommandExecutor {
             return true;
         }
 
-        executeRerouteCommand(player);
-        updateGPSCompass(gpsCompass, player, x, z);
-        player.sendMessage(ChatColor.GREEN + "Your GPS compass has been updated to (" + x + ", " + z + ")!");
+        if (!updateGPSCompass(gpsCompass, player, x, z)) {
+            player.getInventory().remove(gpsCompass);
+            player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
+            player.sendMessage(ChatColor.RED + "Your GPS compass has broken!");
+        } else {
+            player.sendMessage(ChatColor.GREEN + "Your GPS compass has been updated to (" + x + ", " + z + ")!");
+        }
 
         return true;
     }
@@ -75,19 +82,30 @@ public class RerouteCommand implements CommandExecutor {
         return null;
     }
 
-    private void executeRerouteCommand(Player player) {
-        String command = plugin.getConfig().getString("reroute-command").replace("{player}", player.getName());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-    }
-
-    private void updateGPSCompass(ItemStack compass, Player player, int x, int z) {
+    private boolean updateGPSCompass(ItemStack compass, Player player, int x, int z) {
         CompassMeta meta = (CompassMeta) compass.getItemMeta();
         if (meta != null) {
+            PersistentDataContainer data = meta.getPersistentDataContainer();
+            NamespacedKey usesKey = new NamespacedKey(plugin, "gps-uses");
+
+            int usesLeft = data.getOrDefault(usesKey, PersistentDataType.INTEGER, 3);
+            usesLeft--;
+
+            if (usesLeft <= 0) {
+                return false;  // Compass breaks
+            }
+
             Location targetLocation = new Location(player.getWorld(), x, player.getWorld().getHighestBlockYAt(x, z), z);
             meta.setLodestone(targetLocation);
             meta.setLodestoneTracked(false);
-            meta.setLore(List.of(ChatColor.YELLOW + "Heading to " + x + ", " + z));
+            meta.setLore(List.of(
+                    ChatColor.GREEN + "Heading to " + x + ", " + z,
+                    ChatColor.AQUA + "Reroutes left: " + usesLeft
+            ));
+
+            data.set(usesKey, PersistentDataType.INTEGER, usesLeft);
             compass.setItemMeta(meta);
         }
+        return true;
     }
 }
