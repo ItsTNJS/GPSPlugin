@@ -30,7 +30,6 @@
 #### 🔄 **/reroute `<x>` `<z>`**  
 ➡️ Updates an existing GPS Compass to **point to new coordinates**.  
 ✅ The player must **already have a GPS Compass**.  
-✅ Runs a configurable command (by default: removes $10 from the player).  
 
 **Example Usage:**  
 ```sh
