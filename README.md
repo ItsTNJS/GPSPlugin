@@ -9,7 +9,7 @@ A Bukkit/Spigot Minecraft plugin that allows players to create a GPS compass to 
 - The compass breaks after reaching the reroute limit, playing an item break sound.
 - Requires players to have `gps.use` permission to use the commands.
 - The maximum reroutes allowed is configurable in `config.yml`.
-- Right clicking a compass will create a line of particles that point in the direction of the destination.
+- Right-clicking a compass will create a line of particles that point in the direction of the destination.
 ---
 
 ## **Commands**
