@@ -1,3 +1,4 @@
+org\tnjs\GPSPlugin\GPSUseListener.class
 org\tnjs\GPSPlugin\GPSCommand.class
 org\tnjs\GPSPlugin\RerouteCommand.class
 org\tnjs\GPSPlugin\GPSPlugin.class
