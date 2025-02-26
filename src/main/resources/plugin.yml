@@ -1,6 +1,6 @@
 name: GPSPlugin
 main: org.tnjs.GPSPlugin.GPSPlugin
-version: 1.1.2
+version: 1.1.7-beta
 api-version: 1.16
 author: TNJS
 commands:

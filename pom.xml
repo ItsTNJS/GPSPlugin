@@ -6,7 +6,7 @@
 
   <groupId>org.tnjs</groupId>
   <artifactId>GPSPlugin</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.7-beta</version>
   <packaging>jar</packaging>
 
   <name>GPSPlugin</name>
