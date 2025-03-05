@@ -2,6 +2,8 @@
 
 A Bukkit/Spigot Minecraft plugin that allows players to create a GPS compass to navigate to specific coordinates. Players can reroute the compass a limited number of times before it breaks.
 
+Join the support discord - https://dsc.gg/mosaic
+
 ## **Features**
 - Players can set a GPS compass pointing to specified coordinates using `/gps <x> <z>`.
 - The compass can be rerouted up to a configurable number of times using `/reroute <x> <z>`.
