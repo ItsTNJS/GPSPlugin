@@ -46,7 +46,11 @@ public class GPSUseListener implements Listener {
     }
 
     private void spawnParticleTrail(Location start, Location target, Player player) {
-        Vector direction = target.toVector().subtract(start.toVector()).normalize().multiply(0.75);
+        // Adjust target Y to match player's Y
+        Location adjustedTarget = target.clone();
+        adjustedTarget.setY(start.getY());
+
+        Vector direction = adjustedTarget.toVector().subtract(start.toVector()).normalize().multiply(0.75);
 
         Location particleLocation = start.clone().add(0, 1, 0); // Start above the player
 

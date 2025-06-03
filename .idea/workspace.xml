@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd9d11bb-aad7-4ca5-b242-1f48c31df694" name="Changes" comment="Full release">
+    <list default="true" id="fd9d11bb-aad7-4ca5-b242-1f48c31df694" name="Changes" comment="Added &quot;hidden&quot; argument, to hide the location of the GPS in the item lore.&#10;Players in creative can now make a GPS without having 10 compass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tnjs/GPSPlugin/GPSCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tnjs/GPSPlugin/GPSCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tnjs/GPSPlugin/GPSUseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tnjs/GPSPlugin/GPSUseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/tnjs/GPSPlugin/GPSCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/tnjs/GPSPlugin/GPSCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
@@ -90,7 +91,7 @@
       <workItem from="1740640913368" duration="721000" />
       <workItem from="1740641746316" duration="974000" />
       <workItem from="1740824043743" duration="340000" />
-      <workItem from="1748916488049" duration="2850000" />
+      <workItem from="1748916488049" duration="3612000" />
     </task>
     <task id="LOCAL-00001" summary="Permission handler">
       <option name="closed" value="true" />
@@ -132,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740590161708</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added &quot;hidden&quot; argument, to hide the location of the GPS in the item lore.&#10;Players in creative can now make a GPS without having 10 compass">
+      <option name="closed" value="true" />
+      <created>1748919554989</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748919554990</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +151,7 @@
     <MESSAGE value="Permission handler" />
     <MESSAGE value="Adding files" />
     <MESSAGE value="Full release" />
-    <option name="LAST_COMMIT_MESSAGE" value="Full release" />
+    <MESSAGE value="Added &quot;hidden&quot; argument, to hide the location of the GPS in the item lore.&#10;Players in creative can now make a GPS without having 10 compass" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;hidden&quot; argument, to hide the location of the GPS in the item lore.&#10;Players in creative can now make a GPS without having 10 compass" />
   </component>
 </project>
