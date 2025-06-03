@@ -5,7 +5,8 @@ A Bukkit/Spigot Minecraft plugin that allows players to create a GPS compass to 
 Join the support discord - https://dsc.gg/mosaic
 
 ## **Features**
-- Players can set a GPS compass pointing to specified coordinates using `/gps <x> <z>`.
+- Players can set a GPS compass pointing to specified coordinates using `/gps <x> <z>`.\
+- GPS can be set to a hidden location, hiding the destination coordinates.
 - The compass can be rerouted up to a configurable number of times using `/reroute <x> <z>`.
 - The number of reroutes left is displayed in the item lore.
 - The compass breaks after reaching the reroute limit, playing an item break sound.
@@ -17,7 +18,7 @@ Join the support discord - https://dsc.gg/mosaic
 ## **Commands**
 | Command | Description | Permission |
 |---------|-------------|------------|
-| `/gps <x> <z>` | Creates a GPS compass pointing to the given coordinates. Requires 10 compasses. | `gps.use` |
+| `/gps <x> <z> <hidden:true/false>` | Creates a GPS compass pointing to the given coordinates, with the option to hide the destination from the item lore. Requires 10 compasses. | `gps.use` |
 | `/reroute <x> <z>` | Updates the compass to a new location (limited reroutes). | `gps.use` |
 
 ---
