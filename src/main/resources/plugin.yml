@@ -1,12 +1,12 @@
 name: GPSPlugin
 main: org.tnjs.GPSPlugin.GPSPlugin
-version: 1.2.0
+version: 1.2.3
 api-version: 1.16
 author: TNJS
 commands:
   gps:
     description: Get a GPS compass pointing to coordinates
-    usage: /gps <x> <z>
+    usage: /gps <x> <z> <secret:true/false>
   reroute:
     description: Change the destination of your GPS compass
     usage: /reroute <x> <z>
